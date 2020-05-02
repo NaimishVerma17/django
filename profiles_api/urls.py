@@ -10,5 +10,6 @@ router.register('feeds', views.UserProfileFeedViewSet)
 urlpatterns = [
     path('greet/', views.HelloAPIView.as_view()),
     path('login/', views.UserLoginApiView.as_view()),
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('test/<int:t_id>', views.test, {"id":23})
 ]

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -62,3 +63,10 @@ class UserProfileFeedViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         """Sets the user profile to logged in user"""
         serializer.save(user_profile=self.request.user)
+
+
+def test(request, t_id, **kwargs):
+    print('Request', request)
+    print('Request 2', kwargs)
+    print('Request 3', t_id)
+    return HttpResponse({'test': t_id})
