@@ -66,7 +66,7 @@ class UserProfileFeedViewSet(viewsets.ModelViewSet):
 
 
 def test(request, t_id, **kwargs):
-    print('Request', request)
+    print('Request', request.GET['fj'])
     print('Request 2', kwargs)
     print('Request 3', t_id)
     return HttpResponse({'test': t_id})
