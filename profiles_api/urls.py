@@ -11,5 +11,5 @@ urlpatterns = [
     path('greet/', views.HelloAPIView.as_view()),
     path('login/', views.UserLoginApiView.as_view()),
     path('', include(router.urls)),
-    path('test/<int:t_id>', views.test, {"id":23})
+    path('facebook/login', views.facebook_login)
 ]

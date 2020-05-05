@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.dispatch import receiver
+import requests
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -65,8 +67,17 @@ class UserProfileFeedViewSet(viewsets.ModelViewSet):
         serializer.save(user_profile=self.request.user)
 
 
-def test(request, t_id, **kwargs):
-    print('Request', request.GET['fj'])
-    print('Request 2', kwargs)
-    print('Request 3', t_id)
-    return HttpResponse({'test': t_id})
+def facebook_login(request):
+    """Get access token for facebook graph API's"""
+
+    url = 'https://graph.facebook.com/oauth/auth_token'
+    data = {
+        'client_id': '',
+        'client_secret': '',
+        'grant_type': 'client_credentials',
+        'redirect_uri': 'http://localhost:4200/home'
+    }
+
+    res = requests.get(url, data)
+
+    return HttpResponse(res)
